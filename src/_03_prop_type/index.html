@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <!-- React, ReactDOM import -->
+  <script
+    src="https://unpkg.com/react@18/umd/react.development.js"
+    crossorigin
+  ></script>
+  <script
+    src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    crossorigin
+  ></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <script type="text/babel">
+    const root = document.getElementById("root");
+
+    const Btn = ({ text, fontSize }) => {
+      console.log(text, "was rendered");
+      return (
+        <button
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+            fontSize,
+          }}
+        >
+          {text}
+        </button>
+      );
+    };
+
+    /*
+      Prop Type
+      - Prop으로 전달하는 데이터에 타입을 지정할 수 있다.
+    */
+    Btn.propTypes = {
+      text: PropTypes.string.isRequired,
+      fontSize: PropTypes.number,
+    };
+
+    const App = () => {
+      return (
+        <div>
+          <Btn text="Save Changes" fontSize={18} />
+          <Btn text="Continue" />
+        </div>
+      );
+    };
+
+    ReactDOM.render(<App />, root);
+  </script>
+</html>

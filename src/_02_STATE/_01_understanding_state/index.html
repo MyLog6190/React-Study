@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <!-- React, ReactDOM import -->
+  <script
+    src="https://unpkg.com/react@18/umd/react.development.js"
+    crossorigin
+  ></script>
+  <script
+    src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    crossorigin
+  ></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <!-- JavaScript -->
+  <!-- 
+      JavaScript는 DOM 변경을 직접 처리
+      DOM 변경이 발생하면 브라우저는 변경된 DOM 다시 계산하고,
+      랜더 트리를 다시 생성 한 후 화면에 출력
+   -->
+
+  <!-- React -->
+  <!-- 
+    React는 DOM 변경처리를하기 위해 가상 DOM사용
+    React는 메모리에 가상 DOM 트리를 생성
+    React는 상태 변경이 생길 때마다 새로운 가상 트리를 생성하고,
+    이전의 가상 DOM 트리와 비교하여 변경된 부분을 파악
+    가상 DOM을 사용함으로써 변경이 필요한 최고한의 요소만 실제 DOM에 반영
+ 
+  -->
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    let counter = 0;
+
+    function countUp() {
+      counter = counter + 1;
+      render();
+    }
+
+    function render() {
+      ReactDOM.render(<Container />, root);
+    }
+
+    const Container = () => (
+      <div>
+        <h3>Total clicks: {counter}</h3>
+        <button onClick={countUp}>Click me</button>
+      </div>
+    );
+
+    render();
+  </script>
+</html>

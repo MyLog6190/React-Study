@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <!-- React, ReactDOM import -->
+  <!-- React는 (HTML -> JS)가 아니라 (JS -> HTML)이다 -->
+  <script
+    src="https://unpkg.com/react@18/umd/react.development.js"
+    crossorigin
+  ></script>
+  <script
+    src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    crossorigin
+  ></script>
+
+  <script>
+    const root = document.getElementById("root");
+
+    const h3 = React.createElement(
+      "h3",
+      {
+        id: "title",
+        onMouseEnter: () => console.log("mouse enter"),
+      },
+      "Hello I'm a title"
+    );
+
+    const btn = React.createElement(
+      "button",
+      {
+        onClick: () => console.log("I'm clicked"),
+        style: { backgroundColor: "tomato" },
+      },
+      "CLick me"
+    );
+
+    const container = React.createElement("div", null, [h3, btn]);
+    ReactDOM.render(container, root);
+  </script>
+</html>

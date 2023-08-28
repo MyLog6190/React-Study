@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <!-- React, ReactDOM import -->
+  <script
+    src="https://unpkg.com/react@18/umd/react.development.js"
+    crossorigin
+  ></script>
+  <script
+    src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    crossorigin
+  ></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <!-- JavaScript -->
+  <!-- 
+      JavaScript는 DOM 변경을 직접 처리
+      DOM 변경이 발생하면 브라우저는 변경된 DOM 다시 계산하고,
+      랜더 트리를 다시 생성 한 후 화면에 출력
+   -->
+
+  <!-- React -->
+  <!-- 
+    React는 DOM 변경처리를하기 위해 가상 DOM사용
+    React는 메모리에 가상 DOM 트리를 생성
+    React는 상태 변경이 생길 때마다 새로운 가상 트리를 생성하고,
+    이전의 가상 DOM 트리와 비교하여 변경된 부분을 파악
+    가상 DOM을 사용함으로써 변경이 필요한 최고한의 요소만 실제 DOM에 반영
+
+  -->
+  <script type="text/babel">
+    const root = document.getElementById("root");
+
+    const App = () => {
+      const [index, setIndex] = React.useState(0);
+      const onSelect = (event) => {
+        setIndex(event.target.value);
+      };
+
+      return (
+        <div>
+          <h1 className="h1">Super Converter</h1>
+          <select value={index} onChange={onSelect}>
+            <option value="xx">Selet your units</option>
+            <option value="0">Minutes 7 Hours</option>
+            <option value="1">Km & Miles</option>
+          </select>
+
+          <hr />
+
+          {index === "xx" ? "Please select your units" : null}
+          {index === "0" ? <MinutesToHours /> : null}
+          {index === "1" ? <KmTOMiles /> : null}
+        </div>
+      );
+    };
+
+    const MinutesToHours = () => {
+      const [amount, setAmount] = React.useState(0);
+      const [flipped, setFlipped] = React.useState(false);
+
+      const onChange = (event) => {
+        setAmount(event.target.value);
+      };
+
+      const reset = () => setAmount(0);
+      const onFlip = () => {
+        reset();
+        setFlipped((current) => !current);
+      };
+
+      // HTML 태그와 JSX 태그는 다름
+      // JavaScript에서 선점한 키워드는 JSX에서 태그로 사용하지 못함
+      // lable에 for속성은, javaScript에서 for문으로 사용 중이기 때문에 사용 불가
+      return (
+        <div>
+          <div>
+            <label htmlFor="minutes">Minutes</label>
+            <input
+              id="minutes"
+              placeholder="Minutes"
+              value={flipped ? amount * 60 : amount}
+              type="number"
+              onChange={onChange}
+              disabled={flipped}
+            />
+          </div>
+
+          <div>
+            <h3>You Want to Convert {amount}</h3>
+            <label htmlFor="hours">Hours</label>
+            <input
+              id="hours"
+              placeholder="hours"
+              value={flipped ? amount : amount / 60}
+              type="number"
+              onChange={onChange}
+              disabled={!flipped}
+            />
+          </div>
+
+          <button onClick={reset}>Reset</button>
+          <button onClick={onFlip}>Flip</button>
+        </div>
+      );
+    };
+
+    const KmTOMiles = () => {
+      return (
+        <div>
+          <h3>Km To Miles</h3>
+        </div>
+      );
+    };
+
+    ReactDOM.render(<App />, root);
+  </script>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <!-- React, ReactDOM import -->
+  <!-- React는 (HTML -> JS)가 아니라 (JS -> HTML)이다 -->
+  <script
+    src="https://unpkg.com/react@18/umd/react.development.js"
+    crossorigin
+  ></script>
+  <script
+    src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    crossorigin
+  ></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <script type="text/babel">
+    const root = document.getElementById("root");
+
+    const Title = () => {
+      return (
+        <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+          Hello I'm a title
+        </h3>
+      );
+    };
+    // funtion을 () 감싸면 return을 쓰지 않아도 전부 리턴해준다.
+    const Button = () => (
+      <button
+        style={{ backgroundColor: "tomato" }}
+        onClick={() => console.log("i'm click")}
+      >
+        Click me
+      </button>
+    );
+    // 태그 첫글자가 대문자여야 한다. 소문자로 하면 html태그로 인식한다.
+    const Container = () => (
+      <div>
+        <Title />
+        <button>Hello</button>
+        <Button />
+      </div>
+    );
+    ReactDOM.render(<Container />, root);
+  </script>
+</html>
