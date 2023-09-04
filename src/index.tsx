@@ -1,7 +1,7 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import { ThemeProvider } from "styled-components";
-import App from "./App";
+import App from "./_08_type_script/_01_definitely_typed/App";
 
 const darkTheme = {
   textColor: "whitesmoke",
@@ -13,7 +13,9 @@ const lightTheme = {
   backgroundColor: "whitesmoke",
 };
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const rootElement = document.getElementById("root");
+if (!rootElement) throw new Error("Failed to find the root element");
+const root = ReactDOM.createRoot(rootElement);
 
 root.render(
   <ThemeProvider theme={darkTheme}>
