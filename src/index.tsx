@@ -2,6 +2,7 @@ import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ThemeProvider } from "styled-components";
 import { RecoilRoot } from "recoil";
+import { darkTheme } from "./_11_state_management/theme";
 import App from "./_11_state_management/App";
 
 const queryClient = new QueryClient();
@@ -12,8 +13,8 @@ const root = ReactDOM.createRoot(rootElement);
 
 root.render(
   <RecoilRoot>
-    <QueryClientProvider client={queryClient}>
+    <ThemeProvider theme={darkTheme}>
       <App />
-    </QueryClientProvider>
+    </ThemeProvider>
   </RecoilRoot>
 );
