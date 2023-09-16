@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ThemeProvider } from "styled-components";
 import { RecoilRoot } from "recoil";
 import { darkTheme } from "./_11_state_management/theme";
-import App from "./_11_state_management/_01_forms/_02_form_validateion/App";
+import App from "./_11_state_management/_01_forms/_03_form_errors/App";
 
 const queryClient = new QueryClient();
 
