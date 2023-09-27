@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "styled-components";
-import App from "./_12_trello_clone/_07_task/App";
-import { darkTheme } from "./_12_trello_clone/_05_performance/theme";
+import App from "./App";
+import { darkTheme } from "./theme";
 
 import { createGlobalStyle } from "styled-components";
 
