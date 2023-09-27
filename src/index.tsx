@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "styled-components";
-import App from "./_13_animations/_01_basic/App";
+import App from "./_13_animations/_05_motion_values/App";
 import { darkTheme } from "./_13_animations/_01_basic/theme";
 
 import { createGlobalStyle } from "styled-components";
