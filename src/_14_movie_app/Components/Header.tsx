@@ -1,9 +1,14 @@
 import { Link, useMatch } from "react-router-dom";
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import {
+  motion,
+  useAnimation,
+  useScroll,
+  useMotionValueEvent,
+} from "framer-motion";
 import { useState } from "react";
 
-const Nav = styled.nav`
+const Nav = styled(motion.nav)`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -97,13 +102,27 @@ const logoVariants = {
   },
 };
 
+const navVariant = {
+  top: {
+    backgroundColor: "rgba(0,0,0,0)",
+  },
+  scrolled: {
+    backgroundColor: "rgba(0,0,0,1)",
+  },
+};
+
 function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const homeMatch = useMatch("/");
   const tvMatch = useMatch("/tv");
   const toggleSearch = () => setSearchOpen((prev) => !prev);
+  const navAinmation = useAnimation();
+  const { scrollY } = useScroll();
+  useMotionValueEvent(scrollY, "change", (y) => {
+    y > 80 ? navAinmation.start("scrolled") : navAinmation.start("top");
+  });
   return (
-    <Nav>
+    <Nav variants={navVariant} initial={"top"} animate={navAinmation}>
       <Col>
         <Logo
           variants={logoVariants}
