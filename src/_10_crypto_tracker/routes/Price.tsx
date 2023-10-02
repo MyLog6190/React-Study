@@ -20,34 +20,52 @@ interface ChartProps {
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
 `;
 
 const PriceInfo = styled.span`
   font-weight: bold;
+  text-align: center;
+  color: #8f7fe6;
 `;
 
-const ShowPrice = styled.span``;
+const ShowPrice = styled.span`
+  text-align: center;
+`;
 
 function Price() {
   const { coinId } = useOutletContext<ChartProps>();
-  const { isLoading, data } = useQuery<IHistorical[]>(["ohlc", coinId], () =>
+  const { data } = useQuery<IHistorical[]>(["ohlc", coinId], () =>
     fetchCoinHistory(coinId)
   );
+  const date = new Date();
+  const revese = data?.reverse();
 
   return (
     <Wrapper>
-      <PriceInfo>시작가</PriceInfo>
-      <PriceInfo>최고가</PriceInfo>
-      <PriceInfo>최저가</PriceInfo>
-      <PriceInfo>종가</PriceInfo>
-      {data?.map((price) => {
+      <PriceInfo>Date</PriceInfo>
+      <PriceInfo>Open Price</PriceInfo>
+      <PriceInfo>Low Price</PriceInfo>
+      <PriceInfo>high Price</PriceInfo>
+      <PriceInfo>Close Price</PriceInfo>
+      {revese?.map((price, index) => {
         return (
           <>
-            <ShowPrice>open:{price.open}</ShowPrice>
-            <ShowPrice>high:{price.high}</ShowPrice>
-            <ShowPrice>low:{price.low}</ShowPrice>
-            <ShowPrice>close:{price.close}</ShowPrice>
+            <ShowPrice>
+              {date.getFullYear() +
+                "-" +
+                (date.getMonth() + 1) +
+                "-" +
+                (date.getDate() - index)}
+            </ShowPrice>
+            <ShowPrice>{price.open}</ShowPrice>
+            <ShowPrice>{price.low}</ShowPrice>
+            <ShowPrice>{price.high}</ShowPrice>
+            <ShowPrice>{price.close}</ShowPrice>
           </>
         );
       })}

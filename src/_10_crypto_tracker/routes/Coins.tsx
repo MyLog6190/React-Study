@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import styled from "styled-components";
@@ -85,9 +84,6 @@ function Coins() {
   //   })();
   // }, []);
 
-  const setDarkAtom = useSetRecoilState(isDarkAtom);
-  const toggleDarkAtom = () => setDarkAtom((prev) => !prev);
-
   return (
     <Container>
       <Helmet>
@@ -95,7 +91,6 @@ function Coins() {
       </Helmet>
       <Header>
         <Title>Coin</Title>
-        <button onClick={toggleDarkAtom}>Toggle Mode</button>
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>
