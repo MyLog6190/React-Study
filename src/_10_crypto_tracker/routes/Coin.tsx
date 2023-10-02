@@ -187,7 +187,9 @@ function Coin({}: ICoinProps) {
 
       <Header>
         <Title>
-          {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
+          <Link to="/">
+            {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
+          </Link>
         </Title>
       </Header>
 
