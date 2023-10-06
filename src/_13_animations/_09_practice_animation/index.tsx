@@ -1,9 +1,6 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import { RecoilRoot } from "recoil";
-import { ThemeProvider } from "styled-components";
 import App from "./App";
-import { theme } from "../_01_basic/theme";
 
 import { createGlobalStyle } from "styled-components";
 
@@ -63,6 +60,7 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   color:black;
   line-height: 1.2;
+  background: linear-gradient(135deg, #e09, #d0e);
 }
 a {
   text-decoration:none;
@@ -76,9 +74,7 @@ const root = ReactDOM.createRoot(rootElement);
 
 root.render(
   <RecoilRoot>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <App />
-    </ThemeProvider>
+    <GlobalStyle />
+    <App />
   </RecoilRoot>
 );

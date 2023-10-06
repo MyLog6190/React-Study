@@ -1,10 +1,3 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { RecoilRoot } from "recoil";
-import { ThemeProvider } from "styled-components";
-import App from "./App";
-import { theme } from "../_01_basic/theme";
-
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
@@ -61,8 +54,9 @@ table {
 body {
   font-weight: 300;
   font-family: 'Source Sans Pro', sans-serif;
-  color:black;
+  color:${(prop) => prop.theme.white?.darker};
   line-height: 1.2;
+  background-color:black;
 }
 a {
   text-decoration:none;
@@ -70,15 +64,4 @@ a {
 }
 `;
 
-const rootElement = document.getElementById("root");
-if (!rootElement) throw new Error("Failed to find the root element");
-const root = ReactDOM.createRoot(rootElement);
-
-root.render(
-  <RecoilRoot>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <App />
-    </ThemeProvider>
-  </RecoilRoot>
-);
+export default GlobalStyle;
