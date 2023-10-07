@@ -38,6 +38,7 @@ const Circle = styled(motion.div)`
   border-radius: 25px;
   background-color: white;
 `;
+
 const Overlay = styled(motion.div)`
   width: 100%;
   height: 100%;

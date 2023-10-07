@@ -1,10 +1,8 @@
-import ReactDOM from "react-dom/client";
-import { RecoilRoot } from "recoil";
-import App from "./_13_animations/_09_practice_animation/_02_/App";
-
 import { createGlobalStyle } from "styled-components";
+import ToDoList from "./components/ToDoList";
 
 const GlobalStyle = createGlobalStyle`
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -58,7 +56,8 @@ table {
 body {
   font-weight: 300;
   font-family: 'Source Sans Pro', sans-serif;
-  color:black;
+  background-color:${(props) => props.theme.bgColor};
+  color:${(props) => props.theme.textColor};
   line-height: 1.2;
 }
 a {
@@ -67,13 +66,13 @@ a {
 }
 `;
 
-const rootElement = document.getElementById("root");
-if (!rootElement) throw new Error("Failed to find the root element");
-const root = ReactDOM.createRoot(rootElement);
+function App() {
+  return (
+    <>
+      <GlobalStyle />
+      <ToDoList />
+    </>
+  );
+}
 
-root.render(
-  <RecoilRoot>
-    <GlobalStyle />
-    <App />
-  </RecoilRoot>
-);
+export default App;
